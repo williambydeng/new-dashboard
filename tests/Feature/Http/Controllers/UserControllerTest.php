@@ -16,13 +16,15 @@ class UserControllerTest extends TestCase
     {
         
         $user = User::factory()->create();
-
-        $response = $this->actingAs($user)->post(route('user.profile.update', $user), [
+        $other_user = User::factory()->create([
+            'avatar' => 2,
+        ]);
+        $response = $this->actingAs($user)->post(route('user.profile.update', $other_user), [
             'avatar' => 5,
         ]);
 
-        $response->assertSuccessful();
-        $user->refresh();
-        $this->assertEquals(5, $user->avatar);
+        $response->assertForbidden();
+        $other_user->refresh();
+        $this->assertNotEquals(5, $other_user->avatar);
     }
 }

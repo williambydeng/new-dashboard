@@ -29,6 +29,6 @@ Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::post('/{user}/profile/update', [UserController::class, 'update'])->name('user.profile.update');
+Route::post('/{user}/profile/update', [UserController::class, 'update'])->name('user.profile.update')->middleware('can:update,user');;
 
 require __DIR__.'/auth.php';
