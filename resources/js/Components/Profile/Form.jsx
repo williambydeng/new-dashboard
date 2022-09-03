@@ -6,7 +6,6 @@ import Submit from '@/Layouts/Form/Submit';
 import Body from '@/Layouts/Form/Body';
 
 const Form = ({data, raritys, regions, tribes, handleSubmit, setData, errors, destroy = null}) => {
-    console.log(data)
     return (
         <Body handleSubmit={handleSubmit}>
             <Input 
